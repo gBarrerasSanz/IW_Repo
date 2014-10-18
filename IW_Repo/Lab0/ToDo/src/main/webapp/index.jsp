@@ -8,7 +8,7 @@
 		<table>
 			<tr>
 				<td>
-				<select id=field >
+				<select name=field >
 						<option value='task'>task</option>
 						<option value='context'>context</option>
 						<option value='project'>project</option>
@@ -16,7 +16,7 @@
 				</select>
 				</td>
 				<td>
-				<input type="text" id="querytext">
+				<input type="text" name="querytext">
 				</td>
 				<td>
 				<input type="submit" value="Query">

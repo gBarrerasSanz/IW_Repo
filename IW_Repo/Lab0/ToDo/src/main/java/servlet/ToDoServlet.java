@@ -3,13 +3,15 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import common.JSONLoader;
+import common.jsonIO;
 import common.ToDoElement;
 import common.ToDoList;
 
@@ -21,44 +23,22 @@ public class ToDoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String filename = "todo_list.json";
-		//String thisIsThreadSafe = req.getParameter("name");
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
+		String field = req.getParameter("field");
+		String querytext = req.getParameter("querytext");
 		
+		req.setAttribute("field", field);
+		req.setAttribute("querytext", querytext);
+		
+		resp.setContentType("text/html");
 		String opt = req.getServletPath();
 		if(opt.substring(1).equals("query")){
-			out.println("<html>"
-					+ "<head><title></title></head>"
-					+ "<body>"
-					+ "opt = " + "queryyyyy"
-					+ "</body>"
-					+"</html");
+			RequestDispatcher disp = req.getRequestDispatcher("query.jsp");
+			disp.forward(req, resp);
 		}
 		if(opt.substring(1).equals("showall")){
-			JSONLoader loader = new JSONLoader(filename);
-			ToDoList toDoList= loader.load();
-			int i=0;
-			out.println("<html>"
-					+ "<head><title></title></head>"
-					+ "<body>");
-			for (ToDoElement toDoElem : toDoList.getToDoList()) {
-				out.println("ToDo Element ID = "+i+"<br>");
-				out.println("\tTask: " + toDoElem.getTask()+"<br>");
-				out.println("\tContext: " + toDoElem.getContext()+"<br>");
-				out.println("\tProject: " + toDoElem.getProject()+"<br>");
-				out.println("\tPriority: " + toDoElem.getPriority()+"<br>");
-				out.println("<br>");
-				i++;
-			}
-			out.println("</body></html");
+			RequestDispatcher disp = req.getRequestDispatcher("showAll.jsp");
+			disp.forward(req, resp);
 		}
-		/*
-		out.println("<html><head><title>Hello "
-				+ "!</title></head>" + "<body><h1>Hello "
-				+ " ("
-				+ " times)!</h1></body></html>");
-		*/
 	}
 
 }
