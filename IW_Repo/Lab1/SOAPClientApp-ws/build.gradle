@@ -7,78 +7,38 @@ buildscript {
   dependencies {
     classpath 'org.gradle.jacobo.plugins:gradle-wsdl-plugin:1.7.6'
     classpath 'org.gradle.jacobo.plugins:gradle-jaxb-plugin:1.3.4'
-<<<<<<< HEAD
-=======
     classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
->>>>>>> 3b34392188c5634747d8be561097a1092059681a
   }
 }
 
 apply plugin: 'com.github.jacobono.wsdl'
 apply plugin: 'com.github.jacobono.jaxb'
-<<<<<<< HEAD
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-=======
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'jettyEclipse'
->>>>>>> 3b34392188c5634747d8be561097a1092059681a
 
 repositories {
    mavenCentral()                                               
 }
 
 dependencies {
-<<<<<<< HEAD
    jaxws "com.sun.xml.ws:jaxws-rt:2.2.8"
    jaxws "com.sun.xml.ws:jaxws-tools:2.2.8"
-}
-
-//
-// See the documentation of this plugin at
-// https://github.com/jacobono/gradle-wsdl-plugin
-// 
-
-=======
-   compile "com.sun.xml.ws:jaxws-rt:2.2.8"
-   compile "com.sun.xml.ws:jaxws-tools:2.2.8"
    compile 'javax.servlet:javax.servlet-api:3.0.1'
 }
 
->>>>>>> 3b34392188c5634747d8be561097a1092059681a
 wsdl {
   wsdlFolder = "src/main/wsdl"
   wsimport {
     sourceDestinationDirectory = "src-gen/main/java"
-<<<<<<< HEAD
-    wsdlLocation = "http://localhost:8080/ToDo?wsdl"
-=======
-    wsdlLocation = "http://localhost:8081/SOAPServer?wsdl"
->>>>>>> 3b34392188c5634747d8be561097a1092059681a
+    wsdlLocation = "http://localhost:8085/SOAPServer?wsdl"
   }
 }
 
 sourceSets.main.java.srcDirs += wsdl.wsimport.sourceDestinationDirectory
 compileJava.dependsOn wsimport 
 
-<<<<<<< HEAD
-//
-// Required by XJC because helloWorld.xsd is a file
-//
-
 System.setProperty('javax.xml.accessExternalSchema', 'all')
-
-=======
-
-System.setProperty('javax.xml.accessExternalSchema', 'all')
-
-
->>>>>>> 3b34392188c5634747d8be561097a1092059681a
-//
-// The client
-//
 
 task client(type: JavaExec) {
     group 			= 'ToDo Client'
@@ -86,8 +46,6 @@ task client(type: JavaExec) {
     main 			= 'clientapp.Client'
 	classpath 		= sourceSets.main.runtimeClasspath
 }
-<<<<<<< HEAD
-=======
 
 task webapp(type: JavaExec) {
     group 			= 'ToDo WebApp'
@@ -95,4 +53,3 @@ task webapp(type: JavaExec) {
     main 			= 'servlet.ToDoServlet'
 	classpath 		= sourceSets.main.runtimeClasspath
 }
->>>>>>> 3b34392188c5634747d8be561097a1092059681a
