@@ -10,10 +10,11 @@ public class ToDoList {
 	public ToDoList(){
 		super();
 	}
-	
+	/*
 	public List<ToDoElement> getToDoList() {
 		return toDoList;
 	}
+	*/
 
 	public void setToDoList(List<ToDoElement> elem) {
 		this.toDoList = elem;

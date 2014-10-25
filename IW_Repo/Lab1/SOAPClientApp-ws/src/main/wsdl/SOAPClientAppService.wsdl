@@ -68,7 +68,7 @@
 </binding>
 <service name="ToDoWSService">
 <port name="ToDoWSPort" binding="tns:ToDoWSPortBinding">
-<soap:address location="http://localhost:8081/SOAPServer"/>
+<soap:address location="http://localhost:8085/SOAPServer"/>
 </port>
 </service>
 </definitions>
