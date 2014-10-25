@@ -1,5 +1,6 @@
 /build/
 /bin/
+/src/main/java/servlet/ToDoServlet_test.java
 /.gradle/
 /.settings/
 /src-gen/
