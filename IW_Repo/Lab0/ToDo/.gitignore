@@ -1,0 +1,7 @@
+/bin/
+/build/
+/.settings/
+/.classpath
+/.project
+/.gradle
+/hs_err_pid3524.log

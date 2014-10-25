@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+
+repositories {
+   mavenCentral()                                               
+}
+
+dependencies {
+   compile "com.sun.xml.ws:jaxws-rt:2.2.8"
+   compile 'com.google.code.gson:gson:2.3'
+}
+
+task server(type: JavaExec) {
+    group 			= 'Hello World Service'
+    description 	= 'Start a SOAP endpoint'
+    main 			= 'ws.SOAPServer'
+	classpath 		= sourceSets.main.runtimeClasspath
+}
