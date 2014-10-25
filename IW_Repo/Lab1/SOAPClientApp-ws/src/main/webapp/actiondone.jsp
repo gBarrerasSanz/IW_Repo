@@ -12,10 +12,10 @@ private String showList(ToDoList toDolist){
 		elem = list.get(i);
 		sb.append("<h4>ToDo Element ID = "+i+"<h4>"
 		+"<ul>"
-			+"<li><b>Task:</b>"+elem.getTask()+"</li>"
-	 		+"<li><b>Context:</b>"+elem.getContext()+"</li>"
-	  		+"<li><b>Project:</b>"+elem.getProject()+"</li>"
-	  		+"<li><b>Priority:</b>"+elem.getPriority()+"</li>"
+			+"<li><b>Task:</b> "+elem.getTask()+"</li>"
+	 		+"<li><b>Context:</b> "+elem.getContext()+"</li>"
+	  		+"<li><b>Project:</b> "+elem.getProject()+"</li>"
+	  		+"<li><b>Priority:</b> "+elem.getPriority()+"</li>"
 	  	+"</ul>");
 	}
 	return sb.toString();
@@ -30,8 +30,10 @@ private String showList(ToDoList toDolist){
 	ToDoWS ws = wss.getToDoWSPort();
 	switch(action){
 	case "add":
+		int priority = 0;
+		try{ priority = Integer.parseInt((String)request.getAttribute("priority")); }catch(Exception ex){}
 		success = ws.addToDo((String)request.getAttribute("task"), (String)request.getAttribute("context"), 
-				(String)request.getAttribute("project"), Integer.parseInt((String)request.getAttribute("priority")));
+				(String)request.getAttribute("project"), priority);
 		break;
 	case "remove":
 		success = ws.removeToDo(Integer.parseInt((String)request.getAttribute("id")));

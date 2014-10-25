@@ -9,7 +9,7 @@ public class GetToDoList extends Action {
 		super();
 	}
 	
-	public ToDoList getAll(){
+	public ToDoList getList(){
 		return list;
 	}
 	

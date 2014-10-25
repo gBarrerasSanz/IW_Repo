@@ -25,10 +25,10 @@ public class DelToDoElem extends Action {
 	 * @return Interactive deletion
 	 */
 	public boolean del(){
-		GetToDoList getter = new GetToDoList();
-		stdout.println(getter.getAll().toString());
+		ToDoList list = new ToDoList();
+		stdout.println(list.toString());
 		stdout.println("Type the ID of the ToDo element you want to delete: ");
-		int id=-1; boolean found = false;
+		int id=-1;
 		try{ 
 			id = Integer.valueOf(stdin.readLine());
 			return del(id);

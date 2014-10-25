@@ -1,9 +1,6 @@
 package ws;
 
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -19,8 +16,7 @@ import actions.GetToDoList;
 public class ToDoWS {	
 	@WebMethod
 	public ToDoList listToDo() {
-		GetToDoList getter = new GetToDoList();
-		return getter.getAll();
+		return new GetToDoList().getList();
 	}
 	
 	@WebMethod
