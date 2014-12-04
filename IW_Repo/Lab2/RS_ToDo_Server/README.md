@@ -1,2 +1,9 @@
-# Address book service!
-This project contains a demonstration of a CRUD repository with a RESTful interface. The code contains a set of [JUnit](http://junit.org/) tests that show how a REST client can interact with this repository.
+# REST ToDo Server
+
+Execute:
+gradle server
+
+You can check it is working by browsing to:
+http://localhost:8082/todo
+http://localhost:8082/todo/elem/1
+and so on.
