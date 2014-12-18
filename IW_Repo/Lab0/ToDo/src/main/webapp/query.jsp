@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>ToDo Show All</title>
-<%@ page import="common.*" %>
+<%@ page import="websocket.common.*" %>
 <%@ page import="actions.*" %>
 </head>
 <body>

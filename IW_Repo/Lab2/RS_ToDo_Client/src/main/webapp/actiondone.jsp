@@ -6,8 +6,8 @@
 <%@ page import="javax.ws.rs.core.MediaType" %>
 <%@ page import="javax.ws.rs.client.Client" %>
 <%@ page import="javax.ws.rs.client.ClientBuilder" %>
-<%@ page import="common.ToDoElement" %>
-<%@ page import="common.ToDoList" %>
+<%@ page import="websocket.common.ToDoElement" %>
+<%@ page import="websocket.common.ToDoList" %>
 <%@ page import="javax.ws.rs.client.Entity" %>
 <%!
 private String showList(ToDoList toDolist){

@@ -1,0 +1,32 @@
+buildscript {
+  repositories { 
+    jcenter()
+    mavenCentral()
+  }
+
+  dependencies {
+	classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'jettyEclipse'
+
+repositories {
+   mavenCentral()                                               
+}
+
+dependencies {
+	compile 'org.glassfish.tyrus:tyrus-container-grizzly-server:1.8.3'
+	compile 'com.google.code.gson:gson:2.3'
+	compile 'javax.servlet:javax.servlet-api:3.0.1'
+}
+
+task client(type: JavaExec) {
+	standardInput 	= System.in  
+    group 			= 'Hello Websockets Service'
+    description 	= 'Start a Websocket client'
+    main 			= 'events.hellows.Client'
+	classpath 		= sourceSets.main.runtimeClasspath
+}
