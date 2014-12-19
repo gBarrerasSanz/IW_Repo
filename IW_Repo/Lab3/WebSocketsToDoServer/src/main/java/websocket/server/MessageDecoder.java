@@ -19,18 +19,8 @@ public class MessageDecoder implements Decoder.Text<WSMsg> {
     public WSMsg decode(String message) {
 //    	WSMsg msg= gson.fromJson(s, WSMsg.class);
     	JsonObject jsonMsg = Json
-    	        .createReader(new StringReader(message)).readObject();
-    	jsonMsg = jsonMsg.getJsonObject("type");
+    	        .createReader(new StringReader(message)).readObject().getJsonObject("data");
     	WSMsg msg = new WSMsg();
-//    	String[] fields = {"status", "operation", "id", "todoelem"};
-//    	for (String field: fields){
-//    		try{
-//    			
-//    		}
-//    		catch(ClassCastException e){
-//    			
-//    		}
-//    	}
     	String status = "", operation = "", id = "";
     	JsonObject todoElem = null;
     	ToDoElement elem = null;
@@ -40,7 +30,7 @@ public class MessageDecoder implements Decoder.Text<WSMsg> {
     		operation = getField(jsonMsg, "operation");
     		id = getField(jsonMsg, "id");
     		try{
-    			todoElem = jsonMsg.getJsonObject("status");
+    			todoElem = jsonMsg.getJsonObject("todoelem");
     		}
     		catch(Exception e){
     			todoElem = null;
@@ -61,7 +51,7 @@ public class MessageDecoder implements Decoder.Text<WSMsg> {
     		}
 //    		operation = WSMsg.OPERATION.valueOf(jsonMsg.getJsonString("operation").toString());
 //	    	id = Integer.valueOf(jsonMsg.getJsonString("id").toString());
-    		msg.setStatus(WSMsg.STATUS.valueOf(status));
+    		msg.setStatus((WSMsg.STATUS)WSMsg.STATUS.valueOf(status));
     		msg.setOperation(WSMsg.OPERATION.valueOf(operation));
 	    	msg.setId(Integer.valueOf(id));
 	    	msg.setToDoElem(elem);

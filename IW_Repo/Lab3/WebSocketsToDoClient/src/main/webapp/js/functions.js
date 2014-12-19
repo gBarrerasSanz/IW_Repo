@@ -28,26 +28,35 @@ function processResponse() {
 	}
 }
 
-function processOperation(operation_, id_, task_, context_, project_, priority_) {
+function createToDoElem(idElem_, task_, context_, project_, priority_){
+	var todoelem_ = {
+			id: idElem_,
+			task: task_,
+			context: context_,
+			project: project_,
+			priority: priority_
+	};
+	return todoelem;
+}
+
+function processOperation(operation_, id_, todoelem_) {
+	
 	//prepare json data
 	var msg = {
 		status : 'INFO',
 		operation : operation_,
 		id : id_,
-		task : task_,
-		context : context_,
-		project : project_,
-		priority : priority_
+		todoelem: todoelem_
 	};
 	//convert and send data to server
-	ws.send(JSON.stringify(msg));
+	ws.send('Client', msg);
 }
 
 function connect() {
 	ws = $.websocket("ws://localhost:8025/websockets/todo");
 	ws.onopen = function() {
 //		alert("onopen");
-		processOperation(operation);
+		processOperation(operation, '', '');
 	};
 	ws.onclose = function() {
 //		alert("onclose");
