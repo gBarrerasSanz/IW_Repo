@@ -8,12 +8,12 @@
 <script src="js/functions.js"></script>
 </head>
 <script>
-	var operation = "<%=request.getAttribute("operation")%>";
-	var id		= "<%=request.getAttribute("id")%>";
-	var task 	= "<%=request.getAttribute("task")%>";
-	var context = "<%=request.getAttribute("context")%>";
-	var project = "<%=request.getAttribute("project")%>";
-	var priority = "<%=request.getAttribute("priority")%>";
+	var operation 		= "<%=request.getAttribute("operation")%>";
+	var id				= "<%=request.getAttribute("id")%>";
+	var taskElem 		= "<%=request.getAttribute("task")%>";
+	var contextElem 	= "<%=request.getAttribute("context")%>";
+	var projectElem 	= "<%=request.getAttribute("project")%>";
+	var priorityElem 	= "<%=request.getAttribute("priority")%>";
 	$(document).ready(function(){
 		connect();
 	});

@@ -2,6 +2,8 @@ package websocket.common;
 
 import java.net.URI;
 
+import org.json.simple.JSONObject;
+
 public class ToDoElement {
 	
 	private int id;
@@ -62,6 +64,16 @@ public class ToDoElement {
 	
 	public URI getHref() {
 		return href;
+	}
+
+	public JSONObject toJson() {
+		JSONObject  jo = new JSONObject();
+		jo.put("id", id);
+		jo.put("task", task);
+		jo.put("context", context);
+		jo.put("project", project);
+		jo.put("priority", priority);
+		return jo;
 	}
 	
 }

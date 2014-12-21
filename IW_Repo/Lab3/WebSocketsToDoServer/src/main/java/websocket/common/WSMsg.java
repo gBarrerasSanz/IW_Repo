@@ -16,7 +16,7 @@ public class WSMsg {
 	OPERATION operation = null;
 	int id = -1;
 	ToDoElement toDoElem = null;
-	List<ToDoElement> toDoList = null;
+	ToDoList toDoList = null;
 	
 	public WSMsg(){
 	}
@@ -34,6 +34,25 @@ public class WSMsg {
 		this.status = status;
 	}
 	
+	public void setStatus (String status_){
+		switch(status_){
+		case "INFO":
+			this.status = STATUS.INFO;
+			break;
+		case "SUCCESS":
+			this.status = STATUS.SUCCESS;
+			break;
+		case "NOTFOUND":
+			this.status = STATUS.NOTFOUND;
+			break;
+		case "SERVERROR":
+			this.status = STATUS.SERVERROR;
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public OPERATION getOperation() throws NoSuchElementException {
 		if (operation.equals(null)){
 			throw new NoSuchElementException();
@@ -42,14 +61,39 @@ public class WSMsg {
 			return operation;
 		}
 	}
-
+	
+	public void setOperation (String operation_){
+		switch(operation_.toString()){
+		case "QUIT":
+			this.operation = OPERATION.QUIT;
+			break;
+		case "GET_ELEM":
+			this.operation = OPERATION.GET_ELEM;
+			break;
+		case "GET_LIST":
+			this.operation = OPERATION.GET_LIST;
+			break;
+		case "ADD_ELEM":
+			this.operation = OPERATION.ADD_ELEM;
+			break;
+		case "DEL_ELEM":
+			this.operation = OPERATION.DEL_ELEM;
+			break;
+		case "UPDATE_ELEM":
+			this.operation = OPERATION.UPDATE_ELEM;
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public void setOperation(OPERATION operation) {
 		this.operation = operation;
 	}
 
-	public int getId() throws NoSuchElementException{
+	public int getId() {
 		if (operation.equals(-1)){
-			throw new NoSuchElementException();
+			return -1;
 		}
 		else{
 			return id;
@@ -60,9 +104,9 @@ public class WSMsg {
 		this.id = id;
 	}
 
-	public ToDoElement getToDoElem() throws NoSuchElementException{
+	public ToDoElement getToDoElem() {
 		if (operation.equals(null)){
-			throw new NoSuchElementException();
+			return null;
 		}
 		else{
 			return toDoElem;
@@ -73,16 +117,23 @@ public class WSMsg {
 		this.toDoElem = toDoElem;
 	}
 
-	public List<ToDoElement> getToDoList() throws NoSuchElementException{
+	public ToDoList getToDoList() {
 		if (operation.equals(null)){
-			throw new NoSuchElementException();
+			return null;
 		}
 		else{
 			return toDoList;
 		}
 	}
 
-	public void setToDoList(List<ToDoElement> toDoList) {
+	public void setToDoList(ToDoList toDoList) {
 		this.toDoList = toDoList;
+	}
+	
+	@Override
+	public String toString(){
+		 return "Status: '" + this.status + "', operation: '" + this.operation +"\n"+
+				 "', id: '" + this.id + "'" + "', todoelem: '" + this.toDoElem + "'"
+				 + "', todoelem: '" + this.toDoList + "'";
 	}
 }

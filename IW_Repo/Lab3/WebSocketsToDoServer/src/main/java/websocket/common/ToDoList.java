@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.json.simple.JSONArray;
+
 
 public class ToDoList {
 	
@@ -12,8 +14,8 @@ public class ToDoList {
 	public ToDoList(){
 		toDoList = new ArrayList<ToDoElement>();
 	}
-	public List<ToDoElement> getToDoList() {
-		return toDoList;
+	public ToDoList getToDoList() {
+		return this;
 	}
 	
 	public ToDoElement getElement(int id) throws NoSuchElementException {
@@ -77,5 +79,12 @@ public class ToDoList {
 			val = toDoList.get(size - 1).getId() + 1;
 		}
 		return val;
+	}
+	public Object toJson() {
+		JSONArray ja = new JSONArray();
+		for (ToDoElement elem: toDoList){
+			ja.add(elem.toJson());
+		}
+		return ja;
 	}
 }

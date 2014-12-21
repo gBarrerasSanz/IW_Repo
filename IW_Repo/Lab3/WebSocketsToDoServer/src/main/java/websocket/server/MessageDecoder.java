@@ -14,7 +14,7 @@ import websocket.common.*;
   
 public class MessageDecoder implements Decoder.Text<WSMsg> {
 	
-	Gson gson = new Gson();
+//	Gson gson = new Gson();
     @Override
     public WSMsg decode(String message) {
 //    	WSMsg msg= gson.fromJson(s, WSMsg.class);
@@ -44,17 +44,21 @@ public class MessageDecoder implements Decoder.Text<WSMsg> {
     			projectElem = getField(todoElem, "project");
     			priorityElem = getField(todoElem, "priority");
     			elem = new ToDoElement();
-    			elem.setId(Integer.valueOf(idElem));
-    			elem.setTask(taskElem);
-    			elem.setContext(contextElem);
-    			elem.setPriority(Integer.valueOf(priorityElem));
+    			try { elem.setTask(taskElem); } catch(Exception ex){}
+    			try { elem.setContext(contextElem); } catch(Exception ex){}
+    			try { elem.setProject(projectElem); } catch(Exception ex){}
+    			try { elem.setPriority(Integer.valueOf(priorityElem)); } catch(Exception ex){}
     		}
 //    		operation = WSMsg.OPERATION.valueOf(jsonMsg.getJsonString("operation").toString());
 //	    	id = Integer.valueOf(jsonMsg.getJsonString("id").toString());
-    		msg.setStatus((WSMsg.STATUS)WSMsg.STATUS.valueOf(status));
-    		msg.setOperation(WSMsg.OPERATION.valueOf(operation));
-	    	msg.setId(Integer.valueOf(id));
-	    	msg.setToDoElem(elem);
+    		try { msg.setStatus(WSMsg.STATUS.valueOf(status)); } catch(Exception ex){}
+    		try { msg.setOperation(WSMsg.OPERATION.valueOf(operation)); } catch(Exception ex){}
+    		try { msg.setId(Integer.valueOf(id)); } catch(Exception ex){}
+    		try { msg.setToDoElem(elem); } catch(Exception ex){}
+//    		msg.setStatus(status);
+//    		msg.setOperation(operation);
+//	    	msg.setId(Integer.valueOf(id));
+//	    	msg.setToDoElem(elem);
 //		    ToDoElement elem = gson.fromJson(jsonMsg.getJsonString("todoelem").toString(), ToDoElement.class);
 //		    msg.setToDoElem(elem);
     	}
@@ -68,7 +72,8 @@ public class MessageDecoder implements Decoder.Text<WSMsg> {
     private String getField(JsonObject jo, String key){
     	String value = "";
     	try{
-    		value = jo.getJsonString(key).toString();
+    		value = jo.getString(key);
+    		//value.substring(1, value.length()-1);
     	}
     	catch(Exception e){ }
     	return value;

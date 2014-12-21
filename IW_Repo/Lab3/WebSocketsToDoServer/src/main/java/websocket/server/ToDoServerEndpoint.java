@@ -92,8 +92,8 @@ public class ToDoServerEndpoint {
 	}
 	
 	private void doGetList (WSMsg msg, WSMsg msgResp) {
-		List<ToDoElement> list = WebSocketServer.tdlist.getToDoList();
-		if (list.isEmpty() == false){
+		ToDoList list = WebSocketServer.tdlist.getToDoList();
+		if (list.size() > 0){
 			msgResp.setToDoList(list);
 			msgResp.setStatus(WSMsg.STATUS.SUCCESS);
 		}
@@ -110,8 +110,12 @@ public class ToDoServerEndpoint {
 	
 	private void doDelElem (WSMsg msg, WSMsg msgResp) {
 		try{
-			WebSocketServer.tdlist.deleteToDoElem(msg.getId());
-			msgResp.setStatus(WSMsg.STATUS.SUCCESS);
+			if (WebSocketServer.tdlist.deleteToDoElem(msg.getId())){
+				msgResp.setStatus(WSMsg.STATUS.SUCCESS);
+			}
+			else{
+				msgResp.setStatus(WSMsg.STATUS.NOTFOUND);
+			}
 		}
 		catch (NoSuchElementException e){ 
 			msgResp.setStatus(WSMsg.STATUS.NOTFOUND);
