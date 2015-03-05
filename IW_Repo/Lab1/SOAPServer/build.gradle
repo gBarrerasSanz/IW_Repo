@@ -1,0 +1,31 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'jettyEclipse'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+   mavenCentral()                                               
+}
+
+dependencies {
+   compile "com.sun.xml.ws:jaxws-rt:2.2.8"
+   compile 'com.google.code.gson:gson:2.3'
+   compile 'javax.servlet:javax.servlet-api:3.0.1'
+}
+
+task server(type: JavaExec) {
+    group 			= 'Hello World Service'
+    description 	= 'Start a SOAP endpoint'
+    main 			= 'ws.SOAPServer'
+	classpath 		= sourceSets.main.runtimeClasspath
+}
